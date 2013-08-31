@@ -3,6 +3,7 @@ require 'text_importer'
 require 'purchase'
 require 'purchaser'
 require 'merchant'
+require 'item'
 
 describe TextImporter do
   describe 'text import process' do
@@ -31,6 +32,10 @@ describe TextImporter do
     it 'creates a Merchant as needed for each line' do
       expect{importer.import_from_file(file)}.to change{Merchant.count}.from(0).to(3)
       expect(Merchant.where(address: '123 Fake St').first.customers.map(&:name)).to eq(['Marty McFly', 'Snake Plissken'])
+    end
+
+    it 'creates an Item as needed for each line' do
+      expect{importer.import_from_file(file)}.to change{Item.count}.from(0).to(3)
     end
   end
 end
