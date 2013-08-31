@@ -17,7 +17,8 @@ class TextImporter
 
   def create_record(columns)
     options = Hash[key.zip(columns)]
-    Purchase.create(item_id: 1, merchant_id: 1, purchaser_id: 1, count: options[:purchase_count])
+    purchaser = Purchaser.where(name: options['purchaser_name']).first_or_create
+    Purchase.create(item_id: 1, merchant_id: 1, purchaser: purchaser, count: options[:purchase_count])
   end
 
   def columns_from(input)

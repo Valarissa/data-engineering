@@ -1,6 +1,7 @@
 require 'active_record_spec_helper'
 require 'text_importer'
 require 'purchase'
+require 'purchaser'
 
 describe TextImporter do
   describe 'text import process' do
@@ -19,6 +20,11 @@ describe TextImporter do
 
     it 'creates a Purchase for each line' do
       expect{importer.import_from_file(file)}.to change{Purchase.count}.from(0).to(4)
+    end
+
+    it 'creates a Purchaser as needed for each line' do
+      expect{importer.import_from_file(file)}.to change{Purchaser.count}.from(0).to(3)
+      expect(Purchaser.where(name: 'Snake Plissken').first.purchases.count).to eq(2)
     end
   end
 end
