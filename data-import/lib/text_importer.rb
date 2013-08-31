@@ -12,15 +12,27 @@ class TextImporter
   private
 
   def create_key(columns)
-    @key = columns.map{|item| item.gsub("\n", '').gsub(/\s/, '_')}
+    @key = columns.map{|item| item.strip.gsub(/\s/, '_')}
   end
 
   def create_record(columns)
+    options = prepare_options(columns)
+
+    merchant = Merchant.where(options['merchant']).first_or_create
+    purchaser = Purchaser.where(options['purchaser']).first_or_create
+    item = Item.where(options['item'].merge(merchant: merchant)).first_or_create
+    Purchase.create(options['purchase'].merge(item: item, merchant: merchant, purchaser: purchaser))
+  end
+
+  def prepare_options(columns)
     options = Hash[key.zip(columns)]
-    merchant = Merchant.where(name: options['merchant_name'], address: options['merchant_address']).first_or_create
-    item = Item.where(merchant: merchant, description: options['item_description'], price: options['item_price']).first_or_create
-    purchaser = Purchaser.where(name: options['purchaser_name']).first_or_create
-    Purchase.create(item: item, merchant: merchant, purchaser: purchaser, count: options[:purchase_count])
+    options.keys.each do |key|
+      model, attribute = key.split('_')
+      options[model] ||= {}
+      options[model][attribute] = options.delete(key)
+    end
+
+    options
   end
 
   def columns_from(input)
