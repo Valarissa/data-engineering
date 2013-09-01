@@ -1,4 +1,4 @@
-== README
+## README
 
 This application runs using Ruby 2.0.0-p247 and is reliant upon MySQL
 
@@ -22,9 +22,9 @@ If you don't have git installed, use a package manager or Homebrew to get it.
 After cloning, hop into the home directory (if you're using RVM, you'll be
 prompted to trust the .rvmrc file). From there you'll want to do the following:
 
- * Run `bundle install`
- * Run `rake db:create db:migrate`
- * Run `rake db:create db:migrate RAILS_ENV=test`
+* Run `bundle install`
+* Run `rake db:create db:migrate`
+* Run `rake db:create db:migrate RAILS_ENV=test`
 
 That should get you to a point where you can run the tests. If you don't want
 to run the tests, feel free to skip ahead.
@@ -40,7 +40,7 @@ To do so, simply run `rails s` and you're good to go!
 Visit http://localhost:3000 and you'll be dropped into the importer process
 directly.
 
-== The Nitty Gritty
+## The Nitty Gritty
 
 I purposely kept my tests sparse in this project because I feel that tests
 should ultimately be testing business logic alone. I shouldn't need to write
@@ -53,7 +53,7 @@ project description, utilizing the UI to do so. Basically this ensures that
 the business requirements are met and are functioning. Nothing else really
 needs to be tested at that level.
 
-=== TextImporter
+### TextImporter
 
 I made some decisions from the get go, I tried to make the application flexible
 so that even if the formatting of the document was inconsistent (i.e. columns
