@@ -3,6 +3,9 @@ class Purchase < ActiveRecord::Base
   belongs_to :merchant
   belongs_to :item
 
+  validates :purchaser, :item, :merchant, presence: true
+  validates :count, numericality: { greater_than: 0 }
+
   def total
     (item.price * count.to_f)
   end

@@ -13,7 +13,8 @@ class TextImporterController < ApplicationController
 
     respond_to do |format|
       if @import_results
-        format.html { redirect_to imported_purchases_url(@import_results.purchases.first, @import_results.purchases.last), notice: 'Purchases successfully imported.' }
+        format.html { redirect_to imported_purchases_url(@import_results.purchases.first, @import_results.purchases.last),
+                      notice: 'Purchases successfully imported.' }
         format.json { render action: 'show', status: :created, location: @import_results.total }
       else
         format.html { render action: 'new' }
