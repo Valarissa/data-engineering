@@ -25,5 +25,5 @@
 </table>
 
 <div class="total">
-  <%= Purchase.grand_total(@purchases) %>
+  Grand Total: $<span class="amount"><%= Purchase.grand_total(@purchases) %></span>
 </div>

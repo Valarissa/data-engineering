@@ -29,6 +29,13 @@ a {
   }
 }
 
+table {
+  text-align: center;
+  td {
+    width: 200px;
+  }
+}
+
 div {
   &.field, &.actions {
     margin-bottom: 10px;
