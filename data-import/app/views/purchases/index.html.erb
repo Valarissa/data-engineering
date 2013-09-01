@@ -1,0 +1,29 @@
+<h1>Listing purchases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Merchant</th>
+      <th>Item</th>
+      <th>Count</th>
+      <th>Purchase Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= link_to(purchase.purchaser.name, purchase.purchaser) %></td>
+        <td><%= link_to(purchase.merchant.name, purchase.merchant) %></td>
+        <td><%= link_to(purchase.item.description, purchase.item) %></td>
+        <td><%= purchase.count %></td>
+        <td><%= purchase.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="total">
+  <%= Purchase.grand_total(@purchases) %>
+</div>

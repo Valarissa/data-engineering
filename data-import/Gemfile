@@ -30,4 +30,5 @@ gem 'thin'
 group :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'cucumber-rails'
 end

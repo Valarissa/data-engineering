@@ -37,5 +37,9 @@ describe TextImporter do
     it 'creates an Item as needed for each line' do
       expect{importer.import_from_file(file)}.to change{Item.count}.from(0).to(3)
     end
+
+    it 'reports the total amount of gross revenue represented in the file' do
+      expect{importer.import_from_file(file)}.to change{importer.total}.from(0).to(95.0)
+    end
   end
 end

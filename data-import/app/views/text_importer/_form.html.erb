@@ -1,0 +1,21 @@
+<%= form_tag('/import', multipart: true) do %>
+  <% if @import_results.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@import_results.errors.count, "error") %> prohibited this import from occurring:</h2>
+
+      <ul>
+      <% @import_results.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label for="file">File to Import</label> <%= file_field_tag "file" %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Upload" %>
+  </div>
+<% end %>

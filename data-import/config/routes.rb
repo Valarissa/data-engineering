@@ -1,4 +1,17 @@
 DataImport::Application.routes.draw do
+  resources :items
+
+  resources :merchants
+
+  resources :purchasers
+
+  resources :purchases
+  get 'purchases/:id_from/to/:id_to' => 'purchases#index', as: 'imported_purchases'
+
+  get 'import' => 'text_importer#new', as: 'text_importer'
+  post 'import' => 'text_importer#create'
+  root 'text_importer#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
