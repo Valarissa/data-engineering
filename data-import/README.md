@@ -37,7 +37,7 @@ To run the tests, you should do the following:
 All tests should be green and you should be ready to fire up the server.
 To do so, simply run `rails s` and you're good to go!
 
-Visit http://localhost:3000 and you'll be dropped into the importer process
+Visit [localhost](http://localhost:3000) and you'll be dropped into the importer process
 directly.
 
 ## The Nitty Gritty
