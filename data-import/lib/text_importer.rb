@@ -49,6 +49,27 @@ class TextImporter
     @total += (item.price * purchase.count.to_f)
   end
 
+  ##
+  # This method takes a rows' worth of data and creates a Hash by zipping it
+  # together with the key. This gives us a hash like:
+  #
+  #   {'item_price' => 10.0, 'item_description' => 'I\'m being described!'...}
+  #
+  # After preparing that, we then take all of the keys, break them apart into
+  # a model name and an attribute (e.g. 'item', 'price') and then re-creates
+  # the hash to be more like:
+  #
+  #   {'item' => {'price' => 10.0, 'description' => 'I\'m being described!'}...}
+  #
+  # These can then be used in the appropriate #where methods like:
+  #
+  #   Item.where(options['item']).first_or_create!
+  #
+  # This allows this importer to basically be able to add arbitrary attributes
+  # to models as long as the column names are of the #{model}_#{attribute}
+  # format and the database has the appropriate columns.
+  #
+  # Also, it was fun to do this.
   def prepare_options(columns)
     options = Hash[key.zip(columns)]
     options.keys.each do |key|
