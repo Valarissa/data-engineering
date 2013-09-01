@@ -92,7 +92,7 @@ regardless. I left these methods in to allow me to revisit the possibility of
 spending more time on creating that error tracking if it became a desired
 feature in the future.
 
-== In Closing
+## In Closing
 
 If you're so inclined, feel free to respond to the pull request and have me
 build out more features on this as desired. I really wouldn't mind some small
