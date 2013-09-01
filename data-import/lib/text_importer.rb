@@ -43,8 +43,8 @@ class TextImporter
 
     merchant = Merchant.where(options['merchant']).first_or_create!
     purchaser = Purchaser.where(options['purchaser']).first_or_create!
-    item = Item.where(options['item'].merge(merchant: merchant)).first_or_create!
-    purchase = Purchase.create!(options['purchase'].merge(item: item, merchant: merchant, purchaser: purchaser))
+    item = merchant.items.where(options['item']).first_or_create!
+    purchase = item.purchases.create!(options['purchase'].merge(purchaser: purchaser))
     @purchases << purchase
     @total += (item.price * purchase.count.to_f)
   end

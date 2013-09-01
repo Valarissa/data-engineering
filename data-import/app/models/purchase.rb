@@ -1,9 +1,9 @@
 class Purchase < ActiveRecord::Base
   belongs_to :purchaser
-  belongs_to :merchant
   belongs_to :item
+  has_one :merchant, through: :item
 
-  validates :purchaser, :item, :merchant, presence: true
+  validates :purchaser, :item, presence: true
   validates :count, numericality: { greater_than: 0 }
 
   def total

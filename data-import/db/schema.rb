@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20130901002620) do
   create_table "purchases", force: true do |t|
     t.integer  "item_id"
     t.integer  "purchaser_id"
-    t.integer  "merchant_id"
     t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
